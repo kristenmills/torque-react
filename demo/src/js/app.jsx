@@ -29,4 +29,4 @@ var Application = React.createClass({
 });
 
 
-React.renderComponent(<Application />, document.getElementById('app'));
+React.render(<Application />, document.getElementById('app'));

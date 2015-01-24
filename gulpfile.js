@@ -14,7 +14,8 @@ var paths = {
   js_main: './demo/src/js/app.jsx',
   html: './demo/src/**/*.html',
   build_files: './demo/build/**/*',
-  build_dir: './demo/build'
+  build_dir: './demo/build',
+  other_scripts: './src/**/*.@(js|jsx)'
 };
 
 gulp.task('clean', function(cb) {
@@ -30,8 +31,6 @@ gulp.task('build:scripts', function(){
   b.add(paths.js_main);
   return b.bundle()
     .pipe(source('js/main.js'))
-    .pipe(buffer())
-    .pipe(uglify())
     .pipe(gulp.dest(paths.build_dir));
 });
 
@@ -42,6 +41,7 @@ gulp.task('build:html', function(){
 
 gulp.task('watch', function(){
   gulp.watch(paths.scripts, ['build:scripts']);
+  gulp.watch(paths.other_scripts, ['build:scripts']);
   gulp.watch(paths.html, ['build:html']);
 });
 
