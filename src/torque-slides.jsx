@@ -1,4 +1,4 @@
-var React = require('React');
+var React = require('react/addons');
 
 var TorqueSlides = React.createClass({
 
@@ -22,27 +22,31 @@ var TorqueSlides = React.createClass({
   },
 
   componentDidMount: function() {
+    this.refs['slide-0'].onVisible();
     this.setInterval(this.updateSlide, 1000)
   },
 
   render: function() {
-    return <div>{ this.props.children[this.state.current] }</div>;
+    var _this = this;
+    var children = React.Children.map(this.props.children, function (child, index) {
+      return React.addons.cloneWithProps(child, {
+        ref: 'slide-' + (index),
+        hidden: _this.state.current !== index
+      });
+    });
+    return <div> { children } </div>;
   },
 
   updateSlide: function() {
     if(this.state.countdown === 0) {
-      var oldCurrentObj = this.props.children[this.state.current];
+      var oldCurrentObj = this.refs['slide-' + this.state.current];
       var newCurrent = (this.state.current + 1) % this.props.children.length;
-      var newCurrentObj = this.props.children[newCurrent];
-
-      newCurrentObj.onVisible();
+      var newCurrentObj = this.refs['slide-' + newCurrent];
 
       this.setState({
         current: newCurrent,
         countdown: newCurrentObj.props.duration || this.props.duration
-      });
-
-      oldCurrentObj.onHidden();
+      }, newCurrentObj.onVisible);
 
     } else {
       this.setState({

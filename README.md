@@ -51,7 +51,7 @@ The above example is relatively simple. But just to explain some of the features
 
 Torques slides transition in order starting with the first `torque-slide`. When it get's to the end, it will go back to the beginnning. `duration` is specified in seconds at the `torque-slides` level but can be overiddden at the `torque-slide` level.
 
-Something not really shown in the example, it is really easy to performa actions when the slide is hidden or made visible. If create properly named event handlers, (`handleVisible` and `handleHidden`) they will be called when you expec them to.
+Something not really shown in the example, it is really easy to performa actions when the slide is made visible. If your react component has a function defined `handleVisible`, it will be called when the component is made visible
 
 **application.jsx**
 
@@ -76,7 +76,8 @@ var MySlideData = React.createClass({
   handleVisible: function() {
 
   },
-  handleHidden: function() {
+
+  render: function() {
 
   }
 });
