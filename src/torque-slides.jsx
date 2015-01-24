@@ -31,11 +31,19 @@ var TorqueSlides = React.createClass({
 
   updateSlide: function() {
     if(this.state.countdown === 0) {
+      var oldCurrentObj = this.props.children[this.state.current];
       var newCurrent = (this.state.current + 1) % this.props.children.length;
+      var newCurrentObj = this.props.children[newCurrent];
+
+      newCurrentObj.onVisible();
+
       this.setState({
         current: newCurrent,
-        countdown: this.props.children[newCurrent].props.duration || this.props.duration
+        countdown: newCurrentObj.props.duration || this.props.duration
       });
+
+      oldCurrentObj.onHidden();
+
     } else {
       this.setState({
         countdown: this.state.countdown - 1
