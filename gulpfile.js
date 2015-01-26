@@ -25,7 +25,7 @@ gulp.task('build:scripts', function(){
     extensions: ['.jsx'],
     debug: true
   });
-  b.transform(reactify); // use the reactify transform
+  b.transform(function(f){ return reactify(f, {es6: true})}); // use the reactify transform
   b.add(paths.js_main);
   return b.bundle()
     .pipe(source('js/main.js'))

@@ -3,6 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "browserify": {
+    "transform": [
+      [
+        "reactify",
+        {
+          "es6": true
+        }
+      ]
+    ]
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -1,5 +1,4 @@
-torque-react
-======
+# torque-react
 
 A React based automated slide show.
 

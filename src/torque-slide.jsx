@@ -1,7 +1,7 @@
 var React = require('react/addons');
 
 var TorqueSlide = React.createClass({
-  render: function() {
+  render() {
     if(this.props.hidden) {
       return <span />
     }
@@ -17,7 +17,7 @@ var TorqueSlide = React.createClass({
     return <div>{ element }</div>;
   },
 
-  onVisible: function() {
+  onVisible() {
     (this.refs.content.handleVisible || Function)();
   }
 });
