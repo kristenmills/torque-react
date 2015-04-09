@@ -15,8 +15,14 @@ var TorqueSlides = React.createClass({
   },
 
   getInitialState() {
+    var children;
+    if(this.props.children.length == undefined) {
+      children = [this.props.children];
+    } else {
+      children = this.props.children;
+    }
     return {
-      countdown: this.props.children[0].props.duration || this.props.duration,
+      countdown: children[0].props.duration || this.props.duration,
       current: 0
     };
   },
