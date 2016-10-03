@@ -45,6 +45,11 @@ var Application = React.createClass({
 });
 ```
 
+Wanna use the arrow keys to navigate faster? Use the `keyboardInteractive` prop.
+```
+<TorqueSlides duration={2} keyboardInteractive={true} >
+```
+
 ### Overview
 The above example is relatively simple. But just to explain some of the features:
 

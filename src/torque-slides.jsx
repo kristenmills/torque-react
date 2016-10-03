@@ -1,4 +1,6 @@
 var React = require('react/addons');
+const RIGHT_ARROW = 39;
+const LEFT_ARROW = 37;
 
 var TorqueSlides = React.createClass({
 
@@ -12,6 +14,7 @@ var TorqueSlides = React.createClass({
 
   componentWillUnmount() {
     this.intervals.map(clearInterval);
+    document.removeEventListener('keydown', this.keydown, false);
   },
 
   getInitialState() {
@@ -21,6 +24,11 @@ var TorqueSlides = React.createClass({
     } else {
       children = this.props.children;
     }
+
+    if (this.props.keyboardInteractive) {
+      document.addEventListener('keydown', this.keydown, false);
+    }
+
     return {
       countdown: children[0].props.duration || this.props.duration,
       current: 0
@@ -30,6 +38,23 @@ var TorqueSlides = React.createClass({
   componentDidMount() {
     this.refs['slide-0'].onVisible();
     this.setInterval(this.updateSlide, 1000);
+  },
+
+  keydown(e) {
+    switch (e.keyCode) {
+      case RIGHT_ARROW:
+        this.setState({
+          current: (this.state.current + 1) % this.props.children.length,
+          countdown: this.props.duration
+        });
+        break;
+      case LEFT_ARROW:
+        this.setState({
+          current: this.state.current - 1 < 0 ? this.props.children.length - 1: this.state.current - 1,
+          countdown: this.props.duration
+        });
+        break;
+    }
   },
 
   render() {

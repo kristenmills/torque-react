@@ -7,7 +7,7 @@ var TorqueSlide = torque.TorqueSlide;
 var Application = React.createClass({
   render: function() {
     return (
-      <TorqueSlides duration={1} >
+      <TorqueSlides duration={2} keyboardInteractive={true} >
         <TorqueSlide duration={6}>
           Wow!
         </TorqueSlide>
