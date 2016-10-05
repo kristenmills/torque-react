@@ -43,16 +43,10 @@ var TorqueSlides = React.createClass({
   keydown(e) {
     switch (e.keyCode) {
       case RIGHT_ARROW:
-        this.setState({
-          current: (this.state.current + 1) % this.props.children.length,
-          countdown: this.props.duration
-        });
+        this.updateSlideTo((this.state.current + 1) % this.props.children.length);
         break;
       case LEFT_ARROW:
-        this.setState({
-          current: this.state.current - 1 < 0 ? this.props.children.length - 1: this.state.current - 1,
-          countdown: this.props.duration
-        });
+        this.updateSlideTo(this.state.current - 1 < 0 ? this.props.children.length - 1: this.state.current - 1);
         break;
     }
   },
@@ -67,17 +61,17 @@ var TorqueSlides = React.createClass({
     return <div> { children } </div>;
   },
 
+  updateSlideTo(index) {
+    var newCurrentObj = this.refs['slide-' + index];
+    this.setState({
+      current: index,
+      countdown: newCurrentObj.props.duration || this.props.duration
+    }, newCurrentObj.onVisible);
+  },
+
   updateSlide() {
     if(this.state.countdown === 0) {
-      var oldCurrentObj = this.refs['slide-' + this.state.current];
-      var newCurrent = (this.state.current + 1) % this.props.children.length;
-      var newCurrentObj = this.refs['slide-' + newCurrent];
-
-      this.setState({
-        current: newCurrent,
-        countdown: newCurrentObj.props.duration || this.props.duration
-      }, newCurrentObj.onVisible);
-
+      this.updateSlideTo((this.state.current + 1) % this.props.children.length);
     } else {
       this.setState({
         countdown: this.state.countdown - 1
