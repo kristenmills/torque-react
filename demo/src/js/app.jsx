@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 
 var torque = require('../../../');
 var TorqueSlides = torque.TorqueSlides;
@@ -29,4 +30,5 @@ var Application = React.createClass({
 });
 
 
-React.render(<Application />, document.getElementById('app'));
+ReactDOM.render(<Application />, document.getElementById('app'));
+

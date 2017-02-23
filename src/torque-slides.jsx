@@ -1,4 +1,4 @@
-var React = require('react/addons');
+var React = require('react');
 const RIGHT_ARROW = 39;
 const LEFT_ARROW = 37;
 
@@ -53,7 +53,7 @@ var TorqueSlides = React.createClass({
 
   render() {
     var children = React.Children.map(this.props.children, (child, index) => {
-      return React.addons.cloneWithProps(child, {
+      return React.cloneElement(child, {
         ref: 'slide-' + (index),
         hidden: this.state.current !== index
       });

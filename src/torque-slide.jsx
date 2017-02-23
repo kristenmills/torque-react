@@ -1,4 +1,4 @@
-var React = require('react/addons');
+var React = require('react');
 
 var TorqueSlide = React.createClass({
   render() {
@@ -11,7 +11,7 @@ var TorqueSlide = React.createClass({
     } else {
       children = this.props.children;
     }
-    var element = React.addons.cloneWithProps(children, {
+    var element = React.cloneElement(children, {
       ref: 'content'
     });
     return <div>{ element }</div>;
