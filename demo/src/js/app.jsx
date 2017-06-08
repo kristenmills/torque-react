@@ -1,34 +1,16 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import TorqueSlides from '../../../src';
 
-var torque = require('../../../');
-var TorqueSlides = torque.TorqueSlides;
-var TorqueSlide = torque.TorqueSlide;
-
-var Application = React.createClass({
-  render: function() {
-    return (
-      <TorqueSlides duration={2} keyboardInteractive={true} >
-        <TorqueSlide duration={6}>
-          Wow!
-        </TorqueSlide>
-        <TorqueSlide>
-          Check out
-        </TorqueSlide>
-        <TorqueSlide>
-          My Cool
-        </TorqueSlide>
-        <TorqueSlide>
-          Unstyled
-        </TorqueSlide>
-        <TorqueSlide>
-          Torque slides!
-        </TorqueSlide>
-      </TorqueSlides>
-    );
-  }
-});
+const Application = () => (
+  <TorqueSlides duration={2} keyboardInteractive={true} >
+    <p>Wow!</p>
+    <p>Check out</p>
+    <p>My Cool</p>
+    <p>Unstyled</p>
+    <p>Torque slides!</p>
+  </TorqueSlides>
+);
 
 
-ReactDOM.render(<Application />, document.getElementById('app'));
-
+render(<Application />, document.getElementById('app'));
