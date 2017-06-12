@@ -14,35 +14,22 @@ And you should be ready to go
 
 ### [Example](http://kristen-mills.com/torque-react/)
 ```javascript
-var React = require('react');
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import TorqueSlides from '../../../src';
 
-var torque = require('torque-react');
-var TorqueSlides = torque.TorqueSlides;
-var TorqueSlide = torque.TorqueSlide;
+const Application = () => (
+  <TorqueSlides duration={2} keyboardInteractive={true} >
+    <p>Wow!</p>
+    <p>Check out</p>
+    <p>My Cool</p>
+    <p>Unstyled</p>
+    <p>Torque slides!</p>
+  </TorqueSlides>
+);
 
-var Application = React.createClass({
-  render: function() {
-    return (
-      <TorqueSlides duration={1} >
-        <TorqueSlide duration={6}>
-          Wow!
-        </TorqueSlide>
-        <TorqueSlide>
-          Check out
-        </TorqueSlide>
-        <TorqueSlide>
-          My Cool
-        </TorqueSlide>
-        <TorqueSlide>
-          Unstyled
-        </TorqueSlide>
-        <TorqueSlide>
-          Torque slides!
-        </TorqueSlide>
-      </TorqueSlides>
-    );
-  }
-});
+
+render(<Application />, document.getElementById('app'));
 ```
 
 Wanna use the arrow keys to navigate faster? Use the `keyboardInteractive` prop.
@@ -53,38 +40,10 @@ Wanna use the arrow keys to navigate faster? Use the `keyboardInteractive` prop.
 ### Overview
 The above example is relatively simple. But just to explain some of the features:
 
-Torques slides transition in order starting with the first `torque-slide`. When it get's to the end, it will go back to the beginnning. `duration` is specified in seconds at the `torque-slides` level but can be overiddden at the `torque-slide` level.
+Torques slides transition in order starting with the first child. When it get's to the end, it will go back to the beginnning. `duration` is specified in seconds!
 
-Something not really shown in the example, it is really easy to performa actions when the slide is made visible. If your react component has a function defined `handleVisible`, it will be called when the component is made visible
+Something not really shown in the example, it is really easy to performa actions when the slide is made visible. Just define a componentDidMount on the slide!
 
-**application.jsx**
-
-```javascript
-var Application = React.createClass({
-  render: function() {
-    return (
-      <TorqueSlides duration={1} >
-        <TorqueSlide duration={6}>
-          <MySlideData />
-        </TorqueSlide>
-      </TorqueSlides>
-    );
-  }
-});
-```
-
-**my-slide-data.jsx**
-
-```javascript
-var MySlideData = React.createClass({
-  handleVisible: function() {
-
-  },
-
-  render: function() {
-
-  }
-});
-```
+Also not show here is the ablity to supply a type to the `TorqueSlides` component in order to control what it renders as (default is a div). This can be used to easily add animations by supply CSSTransitionGroup and the props needed to `TorqueSlides`.
 
 That's about it.
