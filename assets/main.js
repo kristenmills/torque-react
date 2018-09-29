@@ -10257,7 +10257,7 @@ var Application = function Application() {
     _src2.default,
     { duration: 2, keyboardInteractive: true },
     _react2.default.createElement(
-      TorqueSlide,
+      _src.TorqueSlide,
       { duration: 5 },
       _react2.default.createElement(
         'p',
