@@ -87,14 +87,16 @@ class TorqueSlides extends Component {
       clearTimeout(this.timeout);
     }
 
+    const child = Children.toArray(children)[this.state.currentSlide];
+
     this.timeout = setTimeout(() => {
       this.nextSlide();
-    }, duration * 1000);
+    }, (child.props.duration || duration) * 1000);
 
     return React.createElement(
       type,
       props,
-      Children.toArray(children)[this.state.currentSlide],
+      child,
     );
   }
 }

@@ -16,11 +16,13 @@ And you should be ready to go
 ```javascript
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import TorqueSlides from '../../../src';
+import TorqueSlides, { TorquSlide } from 'torque-react';
 
 const Application = () => (
   <TorqueSlides duration={2} keyboardInteractive={true} >
-    <p>Wow!</p>
+    <TorqueSlide duration={5}>
+      <p>Wow!</p>
+    </TorqueSlide>
     <p>Check out</p>
     <p>My Cool</p>
     <p>Unstyled</p>

@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'build', 'assets'),
     filename: '[name].js',
-    publicPath: '/assets/',
+    publicPath: '/torque-react/assets/',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
